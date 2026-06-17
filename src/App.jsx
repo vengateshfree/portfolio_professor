@@ -29,10 +29,10 @@ import {
 
 // Data definitions
 const roles = [
-  "Associate Professor",
-  "Head of Department",
-  "AI & ML Researcher",
-  "Data Analytics Consultant"
+  "Sensor Networks",
+  "5G/6G",
+  "AI & ML Research",
+  "Data Analytics"
 ]
 
 const publications = [
@@ -188,7 +188,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [openPatentId, setOpenPatentId] = useState(null)
-  
+
   // Contact Form State
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' })
   const [formSubmitted, setFormSubmitted] = useState(false)
@@ -203,7 +203,7 @@ function App() {
   useEffect(() => {
     let timer
     const fullText = roles[roleIndex]
-    
+
     if (isDeleting) {
       timer = setTimeout(() => {
         setCurrentText(prev => prev.slice(0, -1))
@@ -215,7 +215,7 @@ function App() {
         setTypingSpeed(85)
       }, typingSpeed)
     }
-    
+
     if (!isDeleting && currentText === fullText) {
       timer = setTimeout(() => setIsDeleting(true), 2200)
     } else if (isDeleting && currentText === '') {
@@ -223,14 +223,14 @@ function App() {
       setRoleIndex((prev) => (prev + 1) % roles.length)
       setTypingSpeed(150)
     }
-    
+
     return () => clearTimeout(timer)
   }, [currentText, isDeleting, roleIndex])
 
   // Filter publications
   const filteredPublications = publications.filter(pub => {
     const matchesSearch = pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          pub.journal.toLowerCase().includes(searchQuery.toLowerCase())
+      pub.journal.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesCategory = selectedCategory === 'All' || pub.category === selectedCategory
     return matchesSearch && matchesCategory
   })
@@ -239,7 +239,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!formState.name || !formState.email || !formState.message) return
-    
+
     setIsSubmitting(true)
     setTimeout(() => {
       setIsSubmitting(false)
@@ -256,7 +256,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans relative selection:bg-indigo-500 selection:text-white pb-16">
-      
+
       {/* Background Graphic Meshes */}
       <div className="absolute top-0 right-0 w-[55%] h-[650px] bg-gradient-to-bl from-indigo-100/50 via-sky-100/20 to-transparent pointer-events-none z-0"></div>
       <div className="absolute top-[350px] -left-20 w-96 h-96 bg-purple-100/40 rounded-full blur-3xl pointer-events-none z-0"></div>
@@ -285,7 +285,7 @@ function App() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:text-indigo-650"
           >
@@ -308,13 +308,13 @@ function App() {
       {/* Hero Section */}
       <section id="home" className="relative pt-40 pb-24 px-6 z-10">
         <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-12 items-center relative z-10">
-          
+
           {/* Hero Content Left */}
           <div className="md:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-indigo-50 border border-indigo-100/60 text-indigo-700 text-[10px] font-extrabold uppercase tracking-widest rounded-lg">
               <Sparkles className="h-3 w-3 text-indigo-500" /> REVA University, Bengaluru
             </div>
-            
+
             <div className="space-y-2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-none">
                 Dr. Lithin Kumble
@@ -323,16 +323,16 @@ function App() {
                 Associate Professor & Head of Department
               </p>
             </div>
-            
+
             {/* Professional Typewriter Subtitle */}
             <p className="text-xl md:text-2xl font-bold text-slate-800 pl-0.5 tracking-tight">
               Specializing in <span className="text-indigo-650 font-black">{currentText}</span>
             </p>
-            
+
             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-xl">
               Academic administrator and research scientist directing computer systems operations at the School of Computing & IT. Spearheading projects in healthcare AI, autoencoder data compression, and Wireless Sensor Networks.
             </p>
-            
+
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-4 pt-2">
               <a href="#contact" className="px-6 py-3.5 bg-indigo-950 hover:bg-indigo-900 text-white font-bold rounded-xl shadow-md shadow-indigo-950/10 hover:shadow-indigo-950/20 transition-all hover:-translate-y-0.5 text-xs uppercase tracking-wider">
@@ -342,23 +342,23 @@ function App() {
                 Publications
               </a>
             </div>
-            
+
             {/* Clean inline Academic Identifiers as button badges */}
             <div className="flex flex-wrap gap-3 pt-6 border-t border-slate-100">
-              <a 
-                href="https://www.scopus.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.scopus.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-indigo-50 border border-slate-200 rounded-xl text-xs text-slate-700 hover:text-indigo-750 font-semibold transition-all hover:-translate-y-0.5 shadow-3xs"
               >
                 <span className="font-extrabold text-indigo-900">Scopus ID</span>
                 <span>57202369316</span>
                 <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
               </a>
-              <a 
-                href="https://orcid.org" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://orcid.org"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-indigo-50 border border-slate-200 rounded-xl text-xs text-slate-700 hover:text-indigo-750 font-semibold transition-all hover:-translate-y-0.5 shadow-3xs"
               >
                 <span className="font-extrabold text-indigo-900">ORCID ID</span>
@@ -371,13 +371,13 @@ function App() {
           {/* Hero Right: Clean Circular Profile Frame */}
           <div className="md:col-span-5 flex flex-col items-center justify-center">
             <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white shadow-2xl shadow-slate-200/80 ring-1 ring-slate-200 flex items-center justify-center bg-white group hover:scale-[1.02] transition-transform duration-500">
-              <img 
-                src="/avatar.png" 
-                alt="Dr. Lithin Kumble" 
+              <img
+                src="/avatar.png"
+                alt="Dr. Lithin Kumble"
                 className="w-full h-full object-cover scale-[1.02]"
               />
             </div>
-            
+
             {/* Institution Badge */}
             <div className="mt-6 text-center">
               <p className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-0.5">School of Computing & IT</p>
@@ -391,7 +391,7 @@ function App() {
       {/* About Me Section */}
       <section id="about" className="py-24 px-6 relative z-10 border-t border-slate-200/50 bg-white">
         <div className="max-w-6xl mx-auto">
-          
+
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs text-indigo-600 font-bold uppercase tracking-widest mb-1.5">Executive Summary</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">Academic Leadership</h2>
@@ -399,7 +399,7 @@ function App() {
           </div>
 
           <div className="grid md:grid-cols-12 gap-12 items-center">
-            
+
             {/* Quick Metrics Grid */}
             <div className="md:col-span-5 grid grid-cols-2 gap-4">
               {[
@@ -416,7 +416,7 @@ function App() {
                         <Icon className="h-4.5 w-4.5" />
                       </div>
                     </div>
-                    
+
                     <p className="text-3xl font-black text-slate-900 tracking-tight mb-1">{metric.val}</p>
                     <p className="text-[10px] font-extrabold text-slate-450 uppercase tracking-widest leading-normal">{metric.label}</p>
                   </div>
@@ -435,12 +435,12 @@ function App() {
               <p className="text-slate-600 leading-relaxed text-sm md:text-base">
                 Throughout his career, Dr. Kumble has established research workflows integrating deep learning algorithms into health monitoring analytics, agricultural automation, and wireless networks, translating complex computer frameworks into viable engineering solutions.
               </p>
-              
+
               {/* Highlight Research Areas */}
               <div className="pt-2">
                 <p className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-3">Key Research Domains</p>
                 <div className="flex flex-wrap gap-2">
-                  {["Artificial Intelligence", "Machine Learning", "Deep Learning", "Healthcare AI", "Wireless Sensor Networks", "Data Analytics"].map((item) => (
+                  {["Artificial Intelligence", "Machine Learning", "Deep Learning", "Healthcare AI", "Wireless Sensor Networks", "5G/6G Networks", "Data Analytics"].map((item) => (
                     <span key={item} className="bg-slate-50 border border-slate-200 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700">
                       {item}
                     </span>
@@ -455,7 +455,7 @@ function App() {
       {/* Academic Panel (Tabbed Profile Dashboard) */}
       <section id="academic" className="py-24 px-6 relative z-10 border-t border-slate-200/60 bg-slate-50/50">
         <div className="max-w-6xl mx-auto">
-          
+
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs text-indigo-600 font-bold uppercase tracking-widest mb-1.5">Profile Dashboard</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">Experience & Credentials</h2>
@@ -474,11 +474,10 @@ function App() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
-                      isActive 
-                        ? 'bg-indigo-950 text-white shadow-md shadow-indigo-950/10' 
+                    className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${isActive
+                        ? 'bg-indigo-950 text-white shadow-md shadow-indigo-950/10'
                         : 'text-slate-500 hover:text-slate-900 hover:bg-white/40'
-                    }`}
+                      }`}
                   >
                     <Icon className="h-4 w-4" />
                     <span>{tab.label}</span>
@@ -490,16 +489,16 @@ function App() {
 
           {/* Interactive display board */}
           <div className="glass-card rounded-3xl p-8 border border-slate-200/60">
-            
+
             {/* Experience timeline */}
             {activeTab === 'experience' && (
               <div className="space-y-12 pl-2 relative border-l-2 border-slate-200/60 ml-2">
                 {experience.map((exp, idx) => (
                   <div key={idx} className="relative pl-8 group">
-                    
+
                     {/* Glowing Node Dot */}
                     <div className="absolute -left-[9px] top-1.5 w-4.5 h-4.5 rounded-full bg-white border-4 border-indigo-950 group-hover:scale-110 transition-transform shadow-xs"></div>
-                    
+
                     <div className="grid md:grid-cols-12 gap-4 items-start">
                       {/* Duration & Badge info */}
                       <div className="md:col-span-3 space-y-1.5">
@@ -508,12 +507,12 @@ function App() {
                         </span>
                         <p className="text-[9px] text-slate-400 font-extrabold uppercase tracking-widest pl-0.5">{exp.badge}</p>
                       </div>
-                      
+
                       {/* Role & Achievements Card */}
                       <div className="md:col-span-9 bg-white hover:bg-slate-50/20 border border-slate-200/60 hover:border-indigo-600/35 hover:shadow-lg hover:shadow-indigo-950/5 rounded-2xl p-6 transition-all duration-300">
                         <h3 className="text-lg font-black text-slate-900 group-hover:text-indigo-650 transition-colors leading-tight">{exp.role}</h3>
                         <p className="text-xs font-bold text-indigo-700 mb-4">{exp.institution}</p>
-                        
+
                         <ul className="space-y-3 pt-4 border-t border-slate-100">
                           {exp.details.map((detail, dIdx) => (
                             <li key={dIdx} className="flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed">
@@ -538,11 +537,11 @@ function App() {
                 {education.map((edu, idx) => (
                   <div key={idx} className="glass-card p-6 rounded-2xl hover:border-indigo-600/20 relative overflow-hidden group border border-slate-200">
                     <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-indigo-600/5 to-transparent -mr-4 -mt-4 rounded-bl-full group-hover:scale-110 transition-transform"></div>
-                    
+
                     <div className="h-10 w-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6">
                       <GraduationCap className="h-5.5 w-5.5" />
                     </div>
-                    
+
                     <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1.5 mb-2">
                       <Calendar className="h-3 w-3" /> Completed in {edu.year}
                     </span>
@@ -558,7 +557,7 @@ function App() {
             {/* Technical skills dashboard */}
             {activeTab === 'skills' && (
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
+
                 {/* Languages */}
                 <div className="glass-card p-5 rounded-2xl border border-slate-200 space-y-4">
                   <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
@@ -629,7 +628,7 @@ function App() {
       {/* Research Showcase */}
       <section id="research" className="py-24 px-6 relative z-10 border-t border-slate-200/60 bg-white">
         <div className="max-w-6xl mx-auto">
-          
+
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs text-indigo-600 font-bold uppercase tracking-widest mb-1.5">Intellectual Contributions</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">Research & Inventions</h2>
@@ -638,7 +637,7 @@ function App() {
           </div>
 
           <div className="grid lg:grid-cols-12 gap-12">
-            
+
             {/* Publications Catalog - Left */}
             <div className="lg:col-span-7 space-y-6">
               <div className="flex items-center justify-between border-b border-slate-105 pb-4">
@@ -670,11 +669,10 @@ function App() {
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase border transition-all ${
-                        selectedCategory === cat
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase border transition-all ${selectedCategory === cat
                           ? 'bg-indigo-950 border-indigo-950 text-white shadow-xs'
                           : 'bg-white border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-50'
-                      }`}
+                        }`}
                     >
                       {cat}
                     </button>
@@ -704,11 +702,11 @@ function App() {
                           {pub.abstract}
                         </p>
                       </div>
-                      
-                      <a 
-                        href={pub.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+
+                      <a
+                        href={pub.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="h-10 w-10 shrink-0 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-indigo-650 hover:border-indigo-650 transition-colors self-center shadow-2xs"
                       >
                         <ExternalLink className="h-4 w-4" />
@@ -736,24 +734,22 @@ function App() {
                 {patents.map((pat) => {
                   const isOpen = openPatentId === pat.id
                   return (
-                    <div 
-                      key={pat.id} 
-                      className={`border rounded-2xl transition-all overflow-hidden ${
-                        isOpen 
-                          ? 'border-indigo-650 bg-indigo-50/10 shadow-xs' 
+                    <div
+                      key={pat.id}
+                      className={`border rounded-2xl transition-all overflow-hidden ${isOpen
+                          ? 'border-indigo-650 bg-indigo-50/10 shadow-xs'
                           : 'border-slate-200 bg-white hover:border-slate-350'
-                      }`}
+                        }`}
                     >
                       <button
                         onClick={() => togglePatent(pat.id)}
                         className="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-slate-800"
                       >
                         <div className="space-y-1.5 pr-4">
-                          <span className={`inline-block px-2 py-0.5 text-[9px] font-bold uppercase rounded-md tracking-wider ${
-                            pat.type.startsWith('German') 
-                              ? 'bg-amber-50 text-amber-800 border border-amber-200/50' 
+                          <span className={`inline-block px-2 py-0.5 text-[9px] font-bold uppercase rounded-md tracking-wider ${pat.type.startsWith('German')
+                              ? 'bg-amber-50 text-amber-800 border border-amber-200/50'
                               : 'bg-indigo-50 text-indigo-800 border border-indigo-200/50'
-                          }`}>
+                            }`}>
                             {pat.type}
                           </span>
                           <h4 className="text-sm font-extrabold text-slate-900 leading-snug">{pat.title}</h4>
@@ -786,7 +782,7 @@ function App() {
       {/* Awards Section */}
       <section id="awards" className="py-24 px-6 relative z-10 border-t border-slate-200/60 bg-slate-50/50">
         <div className="max-w-6xl mx-auto">
-          
+
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs text-indigo-600 font-bold uppercase tracking-widest mb-1.5">Accreditation</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">Honors & Achievements</h2>
@@ -838,7 +834,7 @@ function App() {
             ].map((award, idx) => (
               <div key={idx} className={`glass-card p-6 rounded-2xl border ${award.border} flex flex-col justify-between relative overflow-hidden group`}>
                 <div className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl ${award.bg} blur-xl opacity-40 group-hover:scale-125 transition-transform`}></div>
-                
+
                 <div className="space-y-4">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 text-slate-500 text-[9px] font-bold uppercase tracking-wider rounded-lg border border-slate-200">
                     <AwardIcon className="h-3 w-3 text-indigo-650" /> {award.badge}
@@ -858,7 +854,7 @@ function App() {
       {/* Contact Section */}
       <section id="contact" className="py-24 px-6 relative z-10 border-t border-slate-200/60 bg-white">
         <div className="max-w-6xl mx-auto">
-          
+
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs text-indigo-600 font-bold uppercase tracking-widest mb-1.5">Get In Touch</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">Inquiry & Partnerships</h2>
@@ -866,7 +862,7 @@ function App() {
           </div>
 
           <div className="grid lg:grid-cols-12 gap-12">
-            
+
             {/* Contact Details Left */}
             <div className="lg:col-span-5 space-y-6">
               <div className="glass-card p-8 rounded-3xl border border-slate-200 space-y-6">
@@ -874,7 +870,7 @@ function App() {
                   <h3 className="text-xl font-extrabold text-slate-900">Dr. Lithin Kumble</h3>
                   <p className="text-xs text-indigo-650 font-bold mt-1">Associate Professor & HOD</p>
                 </div>
-                
+
                 <div className="space-y-5 pt-6 border-t border-slate-100">
                   <div className="flex items-start gap-4">
                     <div className="h-10 w-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center shrink-0 border border-indigo-100/50">
@@ -912,7 +908,7 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  {/*   <div className="flex items-start gap-4">
                     <div className="h-10 w-10 rounded-xl bg-indigo-50 text-indigo-750 flex items-center justify-center shrink-0 border border-indigo-100/50">
                       <MapPin className="h-4.5 w-4.5" />
                     </div>
@@ -922,7 +918,7 @@ function App() {
                         #304, Devisri Greens, Priyank Vilaas, Kattigenahalli, Yelahanka, Bengaluru - 560064
                       </p>
                     </div>
-                  </div>
+                  </div>  */}
                 </div>
               </div>
             </div>
@@ -930,7 +926,7 @@ function App() {
             {/* Form right */}
             <div className="lg:col-span-7">
               <form onSubmit={handleSubmit} className="space-y-5">
-                
+
                 {formSubmitted && (
                   <div className="bg-emerald-50 border border-emerald-250 text-emerald-800 px-5 py-4 rounded-2xl flex items-center gap-3.5 animate-fade-in">
                     <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
@@ -989,9 +985,8 @@ function App() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 bg-indigo-950 hover:bg-indigo-900 text-white font-bold rounded-xl shadow-lg shadow-indigo-950/10 flex items-center justify-center gap-2 transition-all ${
-                    isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:-translate-y-0.5 hover:shadow-indigo-950/20'
-                  }`}
+                  className={`w-full py-4 bg-indigo-950 hover:bg-indigo-900 text-white font-bold rounded-xl shadow-lg shadow-indigo-950/10 flex items-center justify-center gap-2 transition-all ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:-translate-y-0.5 hover:shadow-indigo-950/20'
+                    }`}
                 >
                   {isSubmitting ? (
                     <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
